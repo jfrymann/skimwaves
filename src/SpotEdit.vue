@@ -14,7 +14,7 @@ const error = ref(null); // Error state
 
 async function fetchSpotInfo() {
     try {
-        const response = await fetch("https://skimwaves.vercel.app/spot-info/" + route.params.slug + "/" + route.params._id)
+        const response = await fetch("https://skimwaves-server.vercel.app/spot-info/" + route.params.slug + "/" + route.params._id)
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -28,7 +28,7 @@ async function fetchSpotInfo() {
 }
 
 async function saveEdit(spot) {
-    fetch("https://skimwaves.vercel.app/spot-info/edit/" + route.params.slug + "/" + route.params._id, {
+    fetch("https://skimwaves-server.vercel.app/spot-info/edit/" + route.params.slug + "/" + route.params._id, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
