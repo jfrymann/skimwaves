@@ -11,7 +11,7 @@ const error = ref(null); // Error state
 
 async function fetchSpotInfo() {
   try {
-    const response = await fetch("http://localhost:3001/spot-info/"+route.params.slug+"/"+route.params._id);
+    const response = await fetch("https://skimwaves.vercel.app/"+route.params.slug+"/"+route.params._id);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
