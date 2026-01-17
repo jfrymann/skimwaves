@@ -11,7 +11,7 @@ const error = ref(null); // Error state
 
 async function fetchSpotInfo() {
   try {
-    const response = await fetch("https://skimwaves-server.vercel.app/spot-info/"+route.params.slug+"/"+route.params._id);
+    const response = await fetch("http://localhost:3001/spot-info/"+route.params.slug+"/"+route.params._id);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -41,7 +41,7 @@ onMounted(() => {
         {{ spot.description }}</p>
       <p>Best tide: {{ spot.bestTide }}</p>
       <p>Best Height: {{ spot.bestHeight }}</p>
-      <p>Geolocation: {{ spot.location?.coordinates[0] }}, {{ spot.location?.coordinates[1] }}</p>
+      <p>Geolocation: {{ spot.location?.coordinates[0]}}, {{ spot.location?.coordinates[1]}}</p>
       <br />
       <p class="created">Spot info created at {{ spot.createdAt }}</p>
       <p class="updated">Last updated at {{ spot.updatedAt }}</p>

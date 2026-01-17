@@ -8,7 +8,7 @@ const error = ref(null); // Error state
 
 async function fetchSpots() {
   try {
-    const response = await fetch('https://skimwaves-server.vercel.app/');
+    const response = await fetch('http://localhost:3001/');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }

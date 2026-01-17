@@ -8,13 +8,13 @@ const router = useRouter();
 
 const route = useRoute()
 
-const spot = ref([]); // Reactive data to store the fetched posts
+const spot = ref(); // Reactive data to store the fetched posts
 const loading = ref(true); // Loading indicator state
 const error = ref(null); // Error state
 
 async function fetchSpotInfo() {
     try {
-        const response = await fetch("https://skimwaves-server.vercel.app/spot-info/" + route.params.slug + "/" + route.params._id)
+        const response = await fetch("http://localhost:3001/spot-info/" + route.params.slug + "/" + route.params._id)
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -28,12 +28,12 @@ async function fetchSpotInfo() {
 }
 
 async function saveEdit(spot) {
-    fetch("https://skimwaves-server.vercel.app/spot-info/edit/" + route.params.slug + "/" + route.params._id, {
+    fetch("http://localhost:3001/spot-info/edit/" + route.params.slug + "/" + route.params._id, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(spot), // Convert the JS object to a JSON string
+        body: JSON.stringify(spot) // Convert the JS object to a JSON string
     })
         .then(response => {
             if (!response.ok) {
@@ -43,7 +43,7 @@ async function saveEdit(spot) {
             return response.json(); // Parse the response body as JSON
         })
         .then(data => {
-            console.log('Success'); // Handle the successful response data
+            console.log('Success');  // Handle the successful response data
         })
         .catch(error => {
             console.error('Error:', error); // Handle network errors or errors thrown above
@@ -66,13 +66,16 @@ onMounted(() => {
 
         <div v-if="spot" class="content">
             <RouterLink :to="`/spot-info/${route.params.slug}/${route.params._id}`">Back to Info</RouterLink>
-            <h2>Editing {{ spot.spotName }}</h2>
-            <p>Best Height: <input type="text" v-model="spot.bestHeight" /></p>
-            <p>Geolocation: {{ spot.location?.coordinates[0] }}, {{ spot.location?.coordinates[1] }}</p>
             <form @submit.prevent="saveEdit(spot)">
+                <h2>Editing <input type="text" v-model="spot.spotName" /></h2>
+                <p>Best Height: <input type="text" v-model="spot.bestHeight" /></p>
+                <p>Best Tide: <input type="text" v-model="spot.bestTide" /></p>
+                <p v-if="spot.location?.coordinates">Geolocation:
+                    <input type="text" v-model="spot.location.coordinates[0]" />
+                    <input type="text" v-model="spot.location.coordinates[1]" />
+                </p>
                 <textarea v-model="spot.description"></textarea><br />
-                <input type="text" v-model="spot.bestTide" />
-                <br/>
+                <br />
                 <button type="submit">Save Edit</button>
             </form>
             <br />
