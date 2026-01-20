@@ -5,7 +5,7 @@ vue
     <button @click="logout">Log Out</button>
   </div>
   <div v-else>
-    <button @click="login">Log In</button>
+    <button class = "login-button" @click="login">Log In</button>
   </div>
 </template>
 
@@ -26,3 +26,10 @@ const login = () => {
 //   });
 // };
 </script>
+
+<style>
+  .login-button {
+    font-size: 1.5em;
+    width: 700px;
+  }
+</style>
