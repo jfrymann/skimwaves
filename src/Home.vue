@@ -32,9 +32,17 @@ onMounted(() => {
     <p v-if="loading">Loading spots...</p>
     <p v-else-if="error" class="error">{{ error }}</p>
     <ul v-else>
-      <li v-for="spot in spots" :key="spot._id">
+      <RouterLink class='login' :to="'/login'">Login</RouterLink>
+      <br /><br />
+      <li v-for="spot in spots" :key="spot._id"> 
         <RouterLink :to="'spot-info/'+spot.slug+'/'+spot._id">{{ spot.spotName }}</RouterLink>
       </li>
     </ul>
   </div>
 </template>
+
+<style>
+  .login {
+    font-size: 2em;
+  }
+</style>

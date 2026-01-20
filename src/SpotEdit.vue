@@ -48,7 +48,7 @@ async function saveEdit(spot) {
         .catch(error => {
             console.error('Error:', error); // Handle network errors or errors thrown above
         });
-    router.push('/spot-info/' + route.params.slug + "/" + route.params._id);
+    // router.push('/spot-info/' + route.params.slug + "/" + route.params._id);
 }
 
 onMounted(() => {

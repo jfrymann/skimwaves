@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../Home.vue'
 import SpotInfo from '../SpotInfo.vue'
 import SpotEdit from '../SpotEdit.vue'
+import Login from '../Login.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,11 @@ const router = createRouter({
     path: '/spot-info/edit/:slug/:_id',
     name: 'SpotEdit',
     component: SpotEdit
+  },
+{
+    path: '/login',
+    name: 'Login',
+    component: Login
   }]
 });
 
